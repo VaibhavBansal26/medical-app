@@ -180,6 +180,27 @@ with tab_eda:
 # ─────────── Tab: Gen-AI Diagnostics ──────────────────────────────
 with tab_genai:
     st.header("Generative AI Diagnostics")
+    import scipy.stats as ss
+
+    st.subheader("Feature KS distances")
+    ks = {col: ss.ks_2samp(df_real[col], df_synth[col]).statistic
+        for col in df_real.columns if col != "target"}
+    st.json(ks)
+    import matplotlib.pyplot as plt
+    import scipy.stats as ss
+
+    # compute KS
+    ks = {col: ss.ks_2samp(df_real[col], df_synth[col]).statistic
+        for col in df_real.columns if col!="target"}
+
+    # bar plot
+    fig, ax = plt.subplots(figsize=(6,3))
+    names = list(ks.keys())
+    values= list(ks.values())
+    ax.barh(names, values)
+    ax.set_xlabel("KS distance")
+    ax.set_title("Feature‐by‐feature real vs. synth KS")
+    st.pyplot(fig)
     if show_tables:
         st.subheader("Synthetic data sample")
         st.dataframe(df_synth.head(10), use_container_width=True)
