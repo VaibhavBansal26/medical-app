@@ -1,7 +1,6 @@
-/.streamlit
+/.streamlit/secrets.toml
 .venv/
 __pycache__/
-mlflow.db
 mlruns/
 data/feedback.csv
 .pytest_cache/
