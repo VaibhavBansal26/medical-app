@@ -1,10 +1,13 @@
-pandas
-numpy
-scikit-learn
-xgboost
-ctgan
-joblib
-streamlit
-matplotlib
-openai
-sdv
+# serving + training (pin to the versions the artifacts were built with)
+pandas>=2.2,<3
+numpy>=1.26,<3
+scikit-learn>=1.5,<2
+torch>=2.3,<3
+mlflow>=3.0,<4
+streamlit>=1.40
+matplotlib>=3.8
+seaborn>=0.13
+scipy>=1.11
+tabulate>=0.9
+requests>=2.31
+joblib>=1.4
