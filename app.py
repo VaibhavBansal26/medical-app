@@ -176,12 +176,12 @@ with tab_models:
     rows = [{"model": n, "CV AUC": v["cv"]["auc"], "test AUC": v["test"]["auc"], "test Brier ↓": v["test"]["brier"],
              "leave-one-site-out AUC": sum(v["loso_auc"].values()) / len(v["loso_auc"])} for n, v in metrics["risk"].items()]
     st.dataframe(pd.DataFrame(rows).round(3), hide_index=True, width="stretch")
-    st.bar_chart(pd.DataFrame(rows).set_index("model")[["CV AUC", "test AUC", "leave-one-site-out AUC"]])
+    st.bar_chart(pd.DataFrame(rows).set_index("model")[["CV AUC", "test AUC", "leave-one-site-out AUC"]], stack=False)
     st.subheader("Recommender ranking quality (NDCG@3, held-out patients)")
     rm = metrics["recsys"]
     q = pd.DataFrame({regime: {s: rm[f"{regime}/{s}/ndcg@3"] for s in ["popularity", "content", "collaborative", "hybrid"]}
                       for regime in ["cold", "warm"]})
-    st.bar_chart(q)
+    st.bar_chart(q, stack=False)
     st.info("Collaborative training interactions are **synthetic** (need-matching + latent adherence profiles). "
             "Thumbs up/down feedback is logged to `data/feedback.csv` so real signal can replace it.")
 
