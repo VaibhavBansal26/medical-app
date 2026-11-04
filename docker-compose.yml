@@ -4,4 +4,4 @@ services:
     ports:
       - "8501:8501"
     volumes:
-      - ./data/feedback.csv:/app/data/feedback.csv   # persist thumbs up/down feedback
+      - ./data:/app/data   # persists thumbs up/down feedback (data/feedback.csv)
