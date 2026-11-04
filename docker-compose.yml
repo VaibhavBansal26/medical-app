@@ -1,8 +1,7 @@
-version: "3.8"
 services:
   web:
     build: .
     ports:
       - "8501:8501"
     volumes:
-      - ./:/app
+      - ./data/feedback.csv:/app/data/feedback.csv   # persist thumbs up/down feedback
